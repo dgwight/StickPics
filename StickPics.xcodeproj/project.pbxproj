@@ -10,6 +10,7 @@
 		875C2A171D68E21D00618229 /* StickPicsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */; };
 		875C2A191D68E49300618229 /* StickPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875C2A181D68E49300618229 /* StickPicCell.swift */; };
 		875C2A1D1D68EDEC00618229 /* StickPicHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875C2A1C1D68EDEC00618229 /* StickPicHistory.swift */; };
+		87B38E921DAAF2E100F80578 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B38E911DAAF2E100F80578 /* TableViewController.swift */; };
 		87E1E1511D68DCCF00A73306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87E1E1501D68DCCF00A73306 /* Assets.xcassets */; };
 		87E1E1581D68DCCF00A73306 /* MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 87E1E1571D68DCCF00A73306 /* MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		87E1E15D1D68DCCF00A73306 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E1E15C1D68DCCF00A73306 /* Messages.framework */; };
@@ -48,6 +49,7 @@
 		875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicsCollectionViewController.swift; sourceTree = "<group>"; };
 		875C2A181D68E49300618229 /* StickPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicCell.swift; sourceTree = "<group>"; };
 		875C2A1C1D68EDEC00618229 /* StickPicHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicHistory.swift; sourceTree = "<group>"; };
+		87B38E911DAAF2E100F80578 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		87E1E14D1D68DCCF00A73306 /* StickPics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickPics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E1E1501D68DCCF00A73306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87E1E1521D68DCCF00A73306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,6 +75,90 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		87B38E931DAAF52E00F80578 /* Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */,
+				875C2A181D68E49300618229 /* StickPicCell.swift */,
+			);
+			name = "Collection View";
+			sourceTree = "<group>";
+		};
+		87B38E941DAAF53C00F80578 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				87E1E1701D68DDCA00A73306 /* CreateStickPicController.swift */,
+			);
+			name = Create;
+			sourceTree = "<group>";
+		};
+		87B38E951DAAF54700F80578 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				87E1E15F1D68DCCF00A73306 /* MessagesViewController.swift */,
+			);
+			name = Root;
+			sourceTree = "<group>";
+		};
+		87B38E961DAAF55300F80578 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				87E1E1611D68DCCF00A73306 /* MainInterface.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		87B38E971DAAF56200F80578 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				87F42E3B1DAAB78000C85C07 /* UIImage+StickPics.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		87B38E981DAAF56900F80578 /* Table View */ = {
+			isa = PBXGroup;
+			children = (
+				87B38E911DAAF2E100F80578 /* TableViewController.swift */,
+			);
+			name = "Table View";
+			sourceTree = "<group>";
+		};
+		87B38E991DAAF57D00F80578 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				87B38E951DAAF54700F80578 /* Root */,
+				87B38E941DAAF53C00F80578 /* Create */,
+				87B38E931DAAF52E00F80578 /* Collection View */,
+				87B38E981DAAF56900F80578 /* Table View */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		87B38E9A1DAAF59200F80578 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				87E1E1641D68DCCF00A73306 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		87B38E9B1DAAF59B00F80578 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				87E1E1661D68DCCF00A73306 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		87B38E9C1DAAF5A200F80578 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				875C2A1C1D68EDEC00618229 /* StickPicHistory.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		87E1E1461D68DCCF00A73306 = {
 			isa = PBXGroup;
 			children = (
@@ -112,15 +198,12 @@
 		87E1E15E1D68DCCF00A73306 /* MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
-				87E1E15F1D68DCCF00A73306 /* MessagesViewController.swift */,
-				87E1E1611D68DCCF00A73306 /* MainInterface.storyboard */,
-				87E1E1641D68DCCF00A73306 /* Assets.xcassets */,
-				87E1E1661D68DCCF00A73306 /* Info.plist */,
-				87E1E1701D68DDCA00A73306 /* CreateStickPicController.swift */,
-				875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */,
-				875C2A181D68E49300618229 /* StickPicCell.swift */,
-				875C2A1C1D68EDEC00618229 /* StickPicHistory.swift */,
-				87F42E3B1DAAB78000C85C07 /* UIImage+StickPics.swift */,
+				87B38E991DAAF57D00F80578 /* Modules */,
+				87B38E9C1DAAF5A200F80578 /* API */,
+				87B38E961DAAF55300F80578 /* Storyboards */,
+				87B38E9A1DAAF59200F80578 /* Resources */,
+				87B38E971DAAF56200F80578 /* Extensions */,
+				87B38E9B1DAAF59B00F80578 /* Supporting Files */,
 			);
 			path = MessagesExtension;
 			sourceTree = "<group>";
@@ -229,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				875C2A1D1D68EDEC00618229 /* StickPicHistory.swift in Sources */,
+				87B38E921DAAF2E100F80578 /* TableViewController.swift in Sources */,
 				87F42E3C1DAAB78000C85C07 /* UIImage+StickPics.swift in Sources */,
 				875C2A171D68E21D00618229 /* StickPicsCollectionViewController.swift in Sources */,
 				87E1E1601D68DCCF00A73306 /* MessagesViewController.swift in Sources */,
