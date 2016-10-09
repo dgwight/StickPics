@@ -6,22 +6,33 @@
 //  Copyright © 2016 Dylan Wight. All rights reserved.
 //
 
-
 import Foundation
-
 import UIKit
 import Messages
 
+let savedStickerKey = "savedStickerKey"
+
+protocol CreateStickPicDelegate {
+    func save () -> ()
+}
+
 class CreateStickPicController: UIViewController {
+    
+    var delegate: CreateStickPicDelegate?
     
     static let storyboardIdentifier = "CreateStickPicController"
     
+    fileprivate var undoStack = [UIImage]()
+    
+    fileprivate var currentStroke: UIImage?
     
     @IBOutlet weak var backgroundView: UIView! {
         didSet {
             backgroundView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "backgroundTile"))
         }
     }
+    
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var leftUnderFingerView: UIImageView! {
         didSet {
@@ -53,22 +64,39 @@ class CreateStickPicController: UIViewController {
         imageView.addGestureRecognizer(drag)
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let savedSticker = UserDefaults.standard.string(forKey: savedStickerKey) {
+            imageView.image = UIImage.fromBase64(savedSticker)
+        }
+    }
+    
     @IBAction func save(_ sender: UIButton) {
-        if let image = imageView.image {
-            if let data = UIImagePNGRepresentation(image) {
-                
-                let id = NSUUID().uuidString
-                let url = URL(fileURLWithPath: getDocumentsDirectory().appendingPathComponent("\(id).png"))
-                
-                StickPicHistory.load().addStickPicURL(url: url)
-                
-                do {
-                    try data.write(to: url)
-                } catch {
-                    print(error)
+        let saveAlert = UIAlertController(title: "Done?", message: "Adds new sticker to collection", preferredStyle: .alert)
+        
+        saveAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            if let image = self.imageView.image {
+                if let data = UIImagePNGRepresentation(image) {
+                    
+                    let id = NSUUID().uuidString
+                    let url = URL(fileURLWithPath: self.getDocumentsDirectory().appendingPathComponent("\(id).png"))
+                    
+                    StickPicHistory.load().addStickPicURL(url: url)
+                    
+                    do {
+                        try data.write(to: url)
+                        UserDefaults.standard.setValue(nil, forKey: savedStickerKey)
+                        self.delegate?.save()
+                    } catch {
+                        print(error)
+                    }
                 }
             }
-        }
+        }))
+        saveAlert.addAction(UIAlertAction(title: "Nope", style: .cancel, handler: nil))
+        self.present(saveAlert, animated: true, completion: nil)
     }
     
     @IBAction func addPhoto(_ sender: UIButton) {
@@ -77,9 +105,25 @@ class CreateStickPicController: UIViewController {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         
-        present(imagePicker, animated: true, completion: nil)
+        addChildViewController(imagePicker)
+        
+        imagePicker.view.frame = view.bounds
+        imagePicker.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imagePicker.view)
+        
+        imagePicker.view.leftAnchor.constraint(equalTo: stackView.leftAnchor).isActive = true
+        imagePicker.view.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
+        imagePicker.view.topAnchor.constraint(equalTo: stackView.topAnchor).isActive = true
+        imagePicker.view.bottomAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true
+        
+        imagePicker.didMove(toParentViewController: self)
     }
     
+    @IBAction func undo(_ sender: UIButton) {
+        _ = undoStack.popLast()
+        imageView.image = undoStack.last
+        UserDefaults.standard.setValue(imageView.image, forKey: savedStickerKey)
+    }
     
     @IBOutlet weak var sizeSlider: UISlider! {
         didSet {
@@ -89,7 +133,6 @@ class CreateStickPicController: UIViewController {
         }
     }
     
-    
     func getDocumentsDirectory() -> NSString {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
@@ -98,7 +141,6 @@ class CreateStickPicController: UIViewController {
 
 
     func handleDrag(_ sender: UILongPressGestureRecognizer) {
-        
         
         let point = sender.location(in: imageView)
         
@@ -136,11 +178,22 @@ class CreateStickPicController: UIViewController {
             
         case .ended:
             hideUnderFingerView()
+            addToUndoStack(imageView.image)
         default:
             break
         }
-        
-        
+    }
+    
+    fileprivate func addToUndoStack(_ image: UIImage?) {
+        UserDefaults.standard.setValue(imageView.image, forKey: savedStickerKey)
+        if let image = image {
+            if undoStack.count <= 20 {
+                undoStack.append(image)
+            } else {
+                undoStack.remove(at: 0)
+                undoStack.append(image)
+            }
+        }
     }
 }
 
@@ -150,14 +203,13 @@ extension CreateStickPicController {
     public func hideUnderFingerView() {
         UIView.animate(withDuration: 0.5,delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
             self.leftUnderFingerView.alpha = 0.0
-            }, completion: nil)
+        }, completion: nil)
     }
-    
     
     public func showUnderFingerView() {
         UIView.animate(withDuration: 0.5,delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
             self.leftUnderFingerView.alpha = 1.0
-            }, completion: nil)
+        }, completion: nil)
     }
     
     public func setUnderFingerView(_ position: CGPoint) {
@@ -179,7 +231,6 @@ extension CreateStickPicController {
             underFingerSize = CGSize(width: underFinger, height: underFinger)
         }
         
-        
         leftUnderFingerView.frame = CGRect(x: position.x - (leftUnderFingerView.frame.width/2.0), y: position.y - 30.0 - leftUnderFingerView.frame.height, width: leftUnderFingerView.frame.width, height: leftUnderFingerView.frame.height)
         leftUnderFingerView.image = imageView.image?.cropToSquare(position, cropSize: underFingerSize)
         
@@ -187,52 +238,35 @@ extension CreateStickPicController {
     }
 }
 
-
 extension CreateStickPicController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             UIGraphicsBeginImageContext(imageView.frame.size)
             pickedImage.draw(in: imageView.frame)
             imageView.image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
+            addToUndoStack(imageView.image)
         }
         
-        dismiss(animated: true, completion: nil)
+        for child in childViewControllers {
+            child.willMove(toParentViewController: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParentViewController()
+        }
     }
-}
-
-extension CreateStickPicController: UIGestureRecognizerDelegate {
     
-}
-
-
-extension UIImage {
-    func cropToSquare(_ center: CGPoint, cropSize: CGSize) -> UIImage {
-        var cropCenter = center
-        // fixes cropping distorion on edges
-        if (center.x < cropSize.width/2) {
-            cropCenter.x = cropSize.width/2
-        } else if (center.x > self.size.width - cropSize.width/2){
-            cropCenter.x = self.size.width - cropSize.width/2
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        for child in childViewControllers {
+            child.willMove(toParentViewController: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParentViewController()
         }
-        if (center.y < cropSize.height/2) {
-            cropCenter.y = cropSize.height/2
-        } else if (center.y > self.size.height - cropSize.height/2){
-            cropCenter.y = self.size.height - cropSize.height/2
-        }
-        
-        let posX = cropCenter.x - cropSize.width / 2
-        let posY = cropCenter.y - cropSize.height / 2
-        
-        let rect: CGRect = CGRect(x: posX, y: posY, width: cropSize.width, height: cropSize.height)
-        
-        // Create bitmap image from context using the rect
-        let imageRef: CGImage = self.cgImage!.cropping(to: rect)!
-        
-        // Create a new image based on the imageRef and rotate back to the original orientation
-        let image: UIImage = UIImage(cgImage: imageRef)
-        
-        return image
     }
 }
+
+extension CreateStickPicController: UIGestureRecognizerDelegate {}
+
+
+
 

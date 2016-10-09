@@ -27,8 +27,6 @@ class StickPicsCollectionViewController: UICollectionViewController {
         let url = StickPicHistory.load().stickPicURLs[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StickPicCell", for: indexPath) as! StickPicCell
         
-        print("sticker: \(url)")
-        
         do {
             cell.stickerView.sticker = try MSSticker(contentsOfFileURL: url, localizedDescription: "test")
         } catch {

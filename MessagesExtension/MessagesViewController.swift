@@ -10,9 +10,7 @@ import UIKit
 import Messages
 
 class MessagesViewController: MSMessagesAppViewController {
-    
-    var delagate: UIViewController?
-    
+        
     // MARK: - Conversation Handling
     
     override func willBecomeActive(with conversation: MSConversation) {
@@ -34,15 +32,19 @@ class MessagesViewController: MSMessagesAppViewController {
         
         // Use this method to configure the extension and restore previously stored state.
         
+        if let url = activeConversation?.selectedMessage?.url {
+            print(url.absoluteString)
+        }
         
-        delagate?.dismiss(animated: true, completion: nil)
+//        delegate?.dismiss(animated: true, completion: nil)
 
         let controller: UIViewController
         
         if style == .compact {
             controller = storyboard?.instantiateViewController(withIdentifier: StickPicsCollectionViewController.storyboardIdentifier) as! StickPicsCollectionViewController
         } else {
-            controller = storyboard?.instantiateViewController(withIdentifier: CreateStickPicController.storyboardIdentifier) as! CreateStickPicController
+            controller = (storyboard?.instantiateViewController(withIdentifier: CreateStickPicController.storyboardIdentifier))!
+            (controller as! CreateStickPicController).delegate = self
         }
         
         // Remove any existing child controllers.
@@ -63,9 +65,35 @@ class MessagesViewController: MSMessagesAppViewController {
         controller.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         controller.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
         controller.didMove(toParentViewController: self)
-        
-        delagate = controller
     }
 }
+
+//    // MARK: Convenience
+//
+//    fileprivate func composeMessage(with url: URL, caption: String, session: MSSession? = nil) -> MSMessage {
+//        var components = URLComponents()
+//        components.queryItems = iceCream.queryItems
+//        
+//        let layout = MSMessageTemplateLayout()
+//        layout.image = iceCream.renderSticker(opaque: true)
+//        layout.caption = caption
+//        
+//        let message = MSMessage(session: session ?? MSSession())
+//        message.url = components.url!
+//        message.layout = layout
+//        
+//        return message
+//    }
+//}
+
+extension MessagesViewController: CreateStickPicDelegate {
+    func save() {
+        requestPresentationStyle(.compact)
+    }
+}
+
+
+
+
+

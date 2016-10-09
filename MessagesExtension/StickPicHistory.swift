@@ -30,7 +30,6 @@ class StickPicHistory {
         var stickPicURLs = [URL]()
         let defaults = UserDefaults.standard
         
-        
         if let savedStickPics = defaults.object(forKey: StickPicHistory.userDefaultsKey) as? [String] {
             print(savedStickPics.description)
             stickPicURLs = savedStickPics.flatMap { urlString in

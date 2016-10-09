@@ -17,6 +17,7 @@
 		87E1E1631D68DCCF00A73306 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E1E1611D68DCCF00A73306 /* MainInterface.storyboard */; };
 		87E1E1651D68DCCF00A73306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87E1E1641D68DCCF00A73306 /* Assets.xcassets */; };
 		87E1E1711D68DDCA00A73306 /* CreateStickPicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E1E1701D68DDCA00A73306 /* CreateStickPicController.swift */; };
+		87F42E3C1DAAB78000C85C07 /* UIImage+StickPics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F42E3B1DAAB78000C85C07 /* UIImage+StickPics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		87E1E1641D68DCCF00A73306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87E1E1661D68DCCF00A73306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87E1E1701D68DDCA00A73306 /* CreateStickPicController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStickPicController.swift; sourceTree = "<group>"; };
+		87F42E3B1DAAB78000C85C07 /* UIImage+StickPics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+StickPics.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */,
 				875C2A181D68E49300618229 /* StickPicCell.swift */,
 				875C2A1C1D68EDEC00618229 /* StickPicHistory.swift */,
+				87F42E3B1DAAB78000C85C07 /* UIImage+StickPics.swift */,
 			);
 			path = MessagesExtension;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				875C2A1D1D68EDEC00618229 /* StickPicHistory.swift in Sources */,
+				87F42E3C1DAAB78000C85C07 /* UIImage+StickPics.swift in Sources */,
 				875C2A171D68E21D00618229 /* StickPicsCollectionViewController.swift in Sources */,
 				87E1E1601D68DCCF00A73306 /* MessagesViewController.swift in Sources */,
 				87E1E1711D68DDCA00A73306 /* CreateStickPicController.swift in Sources */,
