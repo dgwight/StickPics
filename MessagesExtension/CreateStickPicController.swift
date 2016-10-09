@@ -36,12 +36,21 @@ class CreateStickPicController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var leftUnderFingerView: UIImageView! {
         didSet {
-            leftUnderFingerView.layer.cornerRadius = min(leftUnderFingerView.frame.height, leftUnderFingerView.frame.width) / 2.0
             leftUnderFingerView.clipsToBounds = true
             leftUnderFingerView.layer.borderWidth = 2.0
             leftUnderFingerView.layer.borderColor = UIColor.black.cgColor
             leftUnderFingerView.alpha = 0.0
             leftUnderFingerView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "backgroundTile"))
+        }
+    }
+    
+    @IBOutlet weak var rightUnderFingerView: UIImageView! {
+        didSet {
+            rightUnderFingerView.clipsToBounds = true
+            rightUnderFingerView.layer.borderWidth = 2.0
+            rightUnderFingerView.layer.borderColor = UIColor.black.cgColor
+            rightUnderFingerView.alpha = 0.0
+            rightUnderFingerView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "backgroundTile"))
         }
     }
     
@@ -122,7 +131,7 @@ class CreateStickPicController: UIViewController {
     @IBAction func undo(_ sender: UIButton) {
         _ = undoStack.popLast()
         imageView.image = undoStack.last
-        UserDefaults.standard.setValue(imageView.image, forKey: savedStickerKey)
+        UserDefaults.standard.setValue(imageView.image?.toBase64(), forKey: savedStickerKey)
     }
     
     @IBOutlet weak var sizeSlider: UISlider! {
@@ -177,7 +186,8 @@ class CreateStickPicController: UIViewController {
             lastPoint = currentPoint
             
         case .ended:
-            hideUnderFingerView()
+            hide(view: rightUnderFingerView)
+            hide(view: leftUnderFingerView)
             addToUndoStack(imageView.image)
         default:
             break
@@ -185,30 +195,28 @@ class CreateStickPicController: UIViewController {
     }
     
     fileprivate func addToUndoStack(_ image: UIImage?) {
-        UserDefaults.standard.setValue(imageView.image, forKey: savedStickerKey)
-        if let image = image {
-            if undoStack.count <= 20 {
-                undoStack.append(image)
-            } else {
-                undoStack.remove(at: 0)
-                undoStack.append(image)
-            }
+        guard let image = image else { return }
+        UserDefaults.standard.setValue(image.toBase64(), forKey: savedStickerKey)
+        if undoStack.count <= 20 {
+            undoStack.append(image)
+        } else {
+            undoStack.remove(at: 0)
+            undoStack.append(image)
         }
     }
 }
 
-
 extension CreateStickPicController {
     
-    public func hideUnderFingerView() {
+    public func hide(view: UIView) {
         UIView.animate(withDuration: 0.5,delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
-            self.leftUnderFingerView.alpha = 0.0
+            view.alpha = 0.0
         }, completion: nil)
     }
     
-    public func showUnderFingerView() {
+    public func show(view: UIView) {
         UIView.animate(withDuration: 0.5,delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
-            self.leftUnderFingerView.alpha = 1.0
+            view.alpha = 1.0
         }, completion: nil)
     }
     
@@ -231,10 +239,17 @@ extension CreateStickPicController {
             underFingerSize = CGSize(width: underFinger, height: underFinger)
         }
         
-        leftUnderFingerView.frame = CGRect(x: position.x - (leftUnderFingerView.frame.width/2.0), y: position.y - 30.0 - leftUnderFingerView.frame.height, width: leftUnderFingerView.frame.width, height: leftUnderFingerView.frame.height)
-        leftUnderFingerView.image = imageView.image?.cropToSquare(position, cropSize: underFingerSize)
+        let underFingerImage = imageView.image?.cropToSquare(position, cropSize: underFingerSize)
+        leftUnderFingerView.image = underFingerImage
+        rightUnderFingerView.image = underFingerImage
         
-        showUnderFingerView()
+        if position.x < 150.0 && position.y < 150.0 {
+            show(view: rightUnderFingerView)
+            hide(view: leftUnderFingerView)
+        } else {
+            show(view: leftUnderFingerView)
+            hide(view: rightUnderFingerView)
+        }
     }
 }
 
