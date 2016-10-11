@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		875AA2D31DAC66E60080E05E /* CreateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875AA2D21DAC66E60080E05E /* CreateCell.swift */; };
 		875C2A171D68E21D00618229 /* StickPicsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */; };
 		875C2A191D68E49300618229 /* StickPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875C2A181D68E49300618229 /* StickPicCell.swift */; };
 		875C2A1D1D68EDEC00618229 /* StickPicHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875C2A1C1D68EDEC00618229 /* StickPicHistory.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		875AA2D21DAC66E60080E05E /* CreateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCell.swift; sourceTree = "<group>"; };
 		875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicsCollectionViewController.swift; sourceTree = "<group>"; };
 		875C2A181D68E49300618229 /* StickPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicCell.swift; sourceTree = "<group>"; };
 		875C2A1C1D68EDEC00618229 /* StickPicHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicHistory.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */,
 				875C2A181D68E49300618229 /* StickPicCell.swift */,
+				875AA2D21DAC66E60080E05E /* CreateCell.swift */,
 			);
 			name = "Collection View";
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				87E1E1601D68DCCF00A73306 /* MessagesViewController.swift in Sources */,
 				87E1E1711D68DDCA00A73306 /* CreateStickPicController.swift in Sources */,
 				875C2A191D68E49300618229 /* StickPicCell.swift in Sources */,
+				875AA2D31DAC66E60080E05E /* CreateCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
