@@ -10,6 +10,8 @@ import UIKit
 import Messages
 
 class MessagesViewController: MSMessagesAppViewController {
+    
+    @IBOutlet weak var subview: UIView!
         
     // MARK: - Conversation Handling
     
@@ -32,8 +34,8 @@ class MessagesViewController: MSMessagesAppViewController {
             controller = storyboard?.instantiateViewController(withIdentifier: StickPicsCollectionViewController.storyboardIdentifier) as! StickPicsCollectionViewController
             (controller as! StickPicsCollectionViewController).delegate = self
         } else {
-            controller = (storyboard?.instantiateViewController(withIdentifier: CreateStickPicController.storyboardIdentifier))!
-            (controller as! CreateStickPicController).delegate = self
+            controller = (storyboard?.instantiateViewController(withIdentifier: TableViewController.storyboardIdentifier))!
+//            (controller as! CreateStickPicController).delegate = self
         }
         
         // Remove any existing child controllers.
@@ -46,14 +48,14 @@ class MessagesViewController: MSMessagesAppViewController {
         // Embed the new controller.
         addChildViewController(controller)
         
-        controller.view.frame = view.bounds
+        controller.view.frame = subview.bounds
         controller.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(controller.view)
+        subview.addSubview(controller.view)
         
-        controller.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        controller.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        controller.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        controller.view.leftAnchor.constraint(equalTo: subview.leftAnchor).isActive = true
+        controller.view.rightAnchor.constraint(equalTo: subview.rightAnchor).isActive = true
+        controller.view.topAnchor.constraint(equalTo: subview.topAnchor).isActive = true
+        controller.view.bottomAnchor.constraint(equalTo: subview.bottomAnchor).isActive = true
         controller.didMove(toParentViewController: self)
     }
 }

@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,10 +19,24 @@
                     <view key="view" contentMode="scaleToFill" id="zMn-AG-sqS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SSN-22-DkK">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="SSN-22-DkK" secondAttribute="bottom" id="1UD-qI-GjU"/>
+                            <constraint firstItem="SSN-22-DkK" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" constant="-15" id="chp-2V-HQi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SSN-22-DkK" secondAttribute="trailing" constant="-15" id="ekx-G5-Pig"/>
+                            <constraint firstItem="SSN-22-DkK" firstAttribute="top" secondItem="qkL-Od-lgU" secondAttribute="bottom" constant="-15" id="hVL-gO-WND"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
+                    <connections>
+                        <outlet property="subview" destination="SSN-22-DkK" id="Usr-az-aYb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -74,25 +90,29 @@
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ObG-Fq-vzb">
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Tt-Yx-9GL"/>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="175-va-dfW">
-                                                <state key="normal" title="Add"/>
+                                                <state key="normal" title="Choose Photo"/>
                                                 <connections>
                                                     <action selector="addPhoto:" destination="wID-p3-hFy" eventType="touchUpInside" id="mM9-R8-Fkb"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9r-JZ-bYD">
-                                                <state key="normal" title="Undo"/>
-                                                <connections>
-                                                    <action selector="undo:" destination="wID-p3-hFy" eventType="touchUpInside" id="OfF-I3-pPL"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzb-Ez-vXC">
-                                                <state key="normal" title="Save"/>
-                                                <connections>
-                                                    <action selector="save:" destination="wID-p3-hFy" eventType="touchUpInside" id="7Gd-r5-2Px"/>
-                                                </connections>
-                                            </button>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Tt-Yx-9GL"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="IE7-RJ-gbX">
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9r-JZ-bYD">
+                                                        <state key="normal" title="Undo"/>
+                                                        <connections>
+                                                            <action selector="undo:" destination="wID-p3-hFy" eventType="touchUpInside" id="OfF-I3-pPL"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzb-Ez-vXC">
+                                                        <state key="normal" title="Save"/>
+                                                        <connections>
+                                                            <action selector="save:" destination="wID-p3-hFy" eventType="touchUpInside" id="7Gd-r5-2Px"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="a1K-ye-BQv"/>
@@ -126,13 +146,13 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="847" y="76"/>
+            <point key="canvasLocation" x="4145" y="72"/>
         </scene>
         <!--Stick Pics Collection View Controller-->
         <scene sceneID="1La-C5-EMR">
             <objects>
                 <collectionViewController storyboardIdentifier="StickPicsCollectionViewController" id="NKq-s2-LYB" customClass="StickPicsCollectionViewController" customModule="MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" id="0oj-NR-HIi">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="0oj-NR-HIi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -143,26 +163,8 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StickPicCell" id="ILi-fy-GA0" customClass="StickPicCell" customModule="MessagesExtension" customModuleProvider="target">
-                                <rect key="frame" x="10" y="10" width="66" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5vb-ya-bcC" customClass="MSStickerView">
-                                            <frame key="frameInset" width="66" height="100"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </subviews>
-                                </view>
-                                <connections>
-                                    <outlet property="stickerView" destination="5vb-ya-bcC" id="qWI-h9-fa1"/>
-                                </connections>
-                            </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CreateCell" id="vUL-12-yJA" customClass="CreateCell" customModule="MessagesExtension" customModuleProvider="target">
-                                <rect key="frame" x="106.5" y="10" width="66" height="100"/>
+                                <rect key="frame" x="10" y="10" width="66" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
@@ -181,6 +183,24 @@
                                     <outlet property="imageView" destination="xqj-3H-cDt" id="HD2-5V-Nsg"/>
                                 </connections>
                             </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StickPicCell" id="ILi-fy-GA0" customClass="StickPicCell" customModule="MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="106.5" y="10" width="66" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5vb-ya-bcC" customClass="MSStickerView">
+                                            <frame key="frameInset" width="66" height="100"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                </view>
+                                <connections>
+                                    <outlet property="stickerView" destination="5vb-ya-bcC" id="qWI-h9-fa1"/>
+                                </connections>
+                            </collectionViewCell>
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="NKq-s2-LYB" id="bic-ha-diq"/>
@@ -190,24 +210,55 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBb-Y7-yUT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1649" y="75"/>
+            <point key="canvasLocation" x="1630" y="75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fuX-OJ-5Fr">
+            <objects>
+                <navigationController storyboardIdentifier="TableViewController" id="kqe-gV-Fx4" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fFP-gT-E8M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="l0g-je-qfu" kind="relationship" relationship="rootViewController" id="rgO-sx-MeW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t0S-Gj-tHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2524" y="72"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="jbq-0f-nrM">
             <objects>
                 <tableViewController id="l0g-je-qfu" customClass="TableViewController" customModule="MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sg6-kp-2Si">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sg6-kp-2Si">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7Ld-0L-2kx">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" rowHeight="100" id="7Ld-0L-2kx" customClass="TableViewCell" customModule="MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Ld-0L-2kx" id="wTX-QY-MRl">
-                                    <frame key="frameInset" width="375" height="44"/>
+                                    <frame key="frameInset" width="375" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MS6-Kx-LJS">
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="MS6-Kx-LJS" secondAttribute="height" multiplier="1:1" id="nmo-JI-7gf"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="MS6-Kx-LJS" firstAttribute="leading" secondItem="wTX-QY-MRl" secondAttribute="leading" constant="8" id="0E9-UU-NZb"/>
+                                        <constraint firstAttribute="bottom" secondItem="MS6-Kx-LJS" secondAttribute="bottom" constant="8" id="2NN-h4-5eg"/>
+                                        <constraint firstItem="MS6-Kx-LJS" firstAttribute="top" secondItem="wTX-QY-MRl" secondAttribute="top" constant="8" id="tn3-nU-dtK"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="stickerImageView" destination="MS6-Kx-LJS" id="LUx-CO-CJw"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -215,10 +266,17 @@
                             <outlet property="delegate" destination="l0g-je-qfu" id="4zA-lt-Ode"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="KRf-Mr-sbZ">
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="TFB-XX-PAT">
+                            <connections>
+                                <segue destination="wID-p3-hFy" kind="show" id="klo-dm-0qG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c36-Ax-Wya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2418" y="75"/>
+            <point key="canvasLocation" x="3242" y="72"/>
         </scene>
     </scenes>
     <resources>

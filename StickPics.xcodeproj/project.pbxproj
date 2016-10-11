@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		870D6A221DAC6EC300677B9A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D6A211DAC6EC300677B9A /* TableViewCell.swift */; };
 		875AA2D31DAC66E60080E05E /* CreateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875AA2D21DAC66E60080E05E /* CreateCell.swift */; };
 		875C2A171D68E21D00618229 /* StickPicsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */; };
 		875C2A191D68E49300618229 /* StickPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875C2A181D68E49300618229 /* StickPicCell.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		870D6A211DAC6EC300677B9A /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		875AA2D21DAC66E60080E05E /* CreateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCell.swift; sourceTree = "<group>"; };
 		875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicsCollectionViewController.swift; sourceTree = "<group>"; };
 		875C2A181D68E49300618229 /* StickPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicCell.swift; sourceTree = "<group>"; };
@@ -86,11 +88,19 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		870D6A201DAC6EAD00677B9A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				870D6A211DAC6EC300677B9A /* TableViewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		87B38E931DAAF52E00F80578 /* Collection View */ = {
 			isa = PBXGroup;
 			children = (
-				875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */,
 				870D6A1F1DAC69BE00677B9A /* Cells */,
+				875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */,
 			);
 			name = "Collection View";
 			sourceTree = "<group>";
@@ -130,6 +140,7 @@
 		87B38E981DAAF56900F80578 /* Table View */ = {
 			isa = PBXGroup;
 			children = (
+				870D6A201DAC6EAD00677B9A /* Cell */,
 				87B38E911DAAF2E100F80578 /* TableViewController.swift */,
 			);
 			name = "Table View";
@@ -325,6 +336,7 @@
 				875C2A1D1D68EDEC00618229 /* StickPicHistory.swift in Sources */,
 				87B38E921DAAF2E100F80578 /* TableViewController.swift in Sources */,
 				87F42E3C1DAAB78000C85C07 /* UIImage+StickPics.swift in Sources */,
+				870D6A221DAC6EC300677B9A /* TableViewCell.swift in Sources */,
 				875C2A171D68E21D00618229 /* StickPicsCollectionViewController.swift in Sources */,
 				87E1E1601D68DCCF00A73306 /* MessagesViewController.swift in Sources */,
 				87E1E1711D68DDCA00A73306 /* CreateStickPicController.swift in Sources */,
