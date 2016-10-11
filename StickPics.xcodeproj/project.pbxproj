@@ -77,12 +77,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		870D6A1F1DAC69BE00677B9A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				875C2A181D68E49300618229 /* StickPicCell.swift */,
+				875AA2D21DAC66E60080E05E /* CreateCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		87B38E931DAAF52E00F80578 /* Collection View */ = {
 			isa = PBXGroup;
 			children = (
 				875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */,
-				875C2A181D68E49300618229 /* StickPicCell.swift */,
-				875AA2D21DAC66E60080E05E /* CreateCell.swift */,
+				870D6A1F1DAC69BE00677B9A /* Cells */,
 			);
 			name = "Collection View";
 			sourceTree = "<group>";

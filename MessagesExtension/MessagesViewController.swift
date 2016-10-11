@@ -18,30 +18,19 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
-        // Called before the extension transitions to a new presentation style.
-        
-        // Use this method to prepare for the change in presentation style.
-        
         presentViewController(style: presentationStyle)
     }
 
-    
     private func presentViewController(style: MSMessagesAppPresentationStyle) {
-        // Called when the extension is about to move from the inactive to active state.
-        // This will happen when the extension is about to present UI.
-        
-        // Use this method to configure the extension and restore previously stored state.
-        
         if let url = activeConversation?.selectedMessage?.url {
             print(url.absoluteString)
         }
         
-//        delegate?.dismiss(animated: true, completion: nil)
-
         let controller: UIViewController
         
         if style == .compact {
             controller = storyboard?.instantiateViewController(withIdentifier: StickPicsCollectionViewController.storyboardIdentifier) as! StickPicsCollectionViewController
+            (controller as! StickPicsCollectionViewController).delegate = self
         } else {
             controller = (storyboard?.instantiateViewController(withIdentifier: CreateStickPicController.storyboardIdentifier))!
             (controller as! CreateStickPicController).delegate = self
@@ -90,6 +79,12 @@ class MessagesViewController: MSMessagesAppViewController {
 extension MessagesViewController: CreateStickPicDelegate {
     func save() {
         requestPresentationStyle(.compact)
+    }
+}
+
+extension MessagesViewController: StickPicsCollectionViewDelegate {
+    func stickPicsViewControllerDidSelectAdd(_ controller: StickPicsCollectionViewController) {
+        requestPresentationStyle(.expanded)
     }
 }
 

@@ -6,9 +6,12 @@
 //  Copyright © 2016 Dylan Wight. All rights reserved.
 //
 
-
 import UIKit
 import Messages
+
+protocol StickPicsCollectionViewDelegate: class {
+    func stickPicsViewControllerDidSelectAdd(_ controller: StickPicsCollectionViewController)
+}
 
 class StickPicsCollectionViewController: UICollectionViewController {
     
@@ -20,6 +23,8 @@ class StickPicsCollectionViewController: UICollectionViewController {
     // MARK: Properties
     
     static let storyboardIdentifier = "StickPicsCollectionViewController"
+    
+    weak var delegate: StickPicsCollectionViewDelegate?
     
     // MARK: UICollectionViewDataSource
     
@@ -52,6 +57,15 @@ class StickPicsCollectionViewController: UICollectionViewController {
             }
             
             return cell
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch Section(rawValue: indexPath.section)! {
+        case .create:
+            delegate?.stickPicsViewControllerDidSelectAdd(self)
+        case .stickPic:
+            break
         }
     }
 }
