@@ -7,22 +7,34 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
+import Messages
 
 class StickPicHistory {
     
-    var stickPicURLs = [URL]()
-    
     static let userDefaultsKey = "StickPicHistory"
-    
+
     let prefs = UserDefaults()
+
+    var stickPicURLs: [URL] {
+        return Array(urls)
+    }
+        
+    var urls = Set<URL>()
     
-    func addStickPicURL(url: URL) {
-        stickPicURLs.append(url)
+    func add(url: URL) {
+        urls.insert(url)
+        save()
+    }
+    
+    func remove(url: URL) {
+        urls.remove(url)
         save()
     }
     
     private init(stickPicURLs: [URL]) {
-        self.stickPicURLs = stickPicURLs
+        self.urls = Set(stickPicURLs)
     }
     
     /// Loads previously created `IceCream`s and returns a `IceCreamHistory` instance.
@@ -42,15 +54,13 @@ class StickPicHistory {
     
     /// Saves the history.
     func save() {
-        // Save a maximum number ice creams.
-        let stickPicsToSave = stickPicURLs //.suffix(8)
         
-        // Map the ice creams to an array of URL strings.
-        let stickPicURLStrings: [String] = stickPicsToSave.flatMap { stickPic in
+        let defaults = UserDefaults.standard
+
+        let stickPicURLStrings: [String] = urls.flatMap { stickPic in
             return stickPic.absoluteString
         }
         
-        let defaults = UserDefaults.standard
         defaults.set(stickPicURLStrings as AnyObject, forKey: StickPicHistory.userDefaultsKey)
     }
 }

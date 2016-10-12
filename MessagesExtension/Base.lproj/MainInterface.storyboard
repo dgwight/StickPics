@@ -29,7 +29,7 @@
                             <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="SSN-22-DkK" secondAttribute="bottom" id="1UD-qI-GjU"/>
                             <constraint firstItem="SSN-22-DkK" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" constant="-15" id="chp-2V-HQi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SSN-22-DkK" secondAttribute="trailing" constant="-15" id="ekx-G5-Pig"/>
-                            <constraint firstItem="SSN-22-DkK" firstAttribute="top" secondItem="qkL-Od-lgU" secondAttribute="bottom" constant="-15" id="hVL-gO-WND"/>
+                            <constraint firstItem="SSN-22-DkK" firstAttribute="top" secondItem="qkL-Od-lgU" secondAttribute="bottom" id="hVL-gO-WND"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -97,22 +97,12 @@
                                                 </connections>
                                             </button>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Tt-Yx-9GL"/>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="IE7-RJ-gbX">
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9r-JZ-bYD">
-                                                        <state key="normal" title="Undo"/>
-                                                        <connections>
-                                                            <action selector="undo:" destination="wID-p3-hFy" eventType="touchUpInside" id="OfF-I3-pPL"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzb-Ez-vXC">
-                                                        <state key="normal" title="Save"/>
-                                                        <connections>
-                                                            <action selector="save:" destination="wID-p3-hFy" eventType="touchUpInside" id="7Gd-r5-2Px"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9r-JZ-bYD">
+                                                <state key="normal" title="Undo"/>
+                                                <connections>
+                                                    <action selector="undo:" destination="wID-p3-hFy" eventType="touchUpInside" id="OfF-I3-pPL"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="a1K-ye-BQv"/>
@@ -129,7 +119,13 @@
                             <constraint firstItem="KTb-P1-Ks2" firstAttribute="leading" secondItem="ARc-t6-Fhw" secondAttribute="leading" id="yp0-6z-GX4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="5xM-H3-F8l"/>
+                    <navigationItem key="navigationItem" id="5xM-H3-F8l">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="C7B-gJ-NdH">
+                            <connections>
+                                <action selector="save:" destination="wID-p3-hFy" id="djw-v8-X3E"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="backgroundView" destination="5Od-24-hcs" id="o0g-rc-COq"/>
                         <outlet property="imageView" destination="g4Y-Xo-VOg" id="REA-oQ-OpU"/>

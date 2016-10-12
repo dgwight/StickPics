@@ -54,6 +54,7 @@
 		875C2A181D68E49300618229 /* StickPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicCell.swift; sourceTree = "<group>"; };
 		875C2A1C1D68EDEC00618229 /* StickPicHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicHistory.swift; sourceTree = "<group>"; };
 		87B38E911DAAF2E100F80578 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		87DCB92E1DADC59D00491E45 /* MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessagesExtension.entitlements; sourceTree = "<group>"; };
 		87E1E14D1D68DCCF00A73306 /* StickPics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickPics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E1E1501D68DCCF00A73306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87E1E1521D68DCCF00A73306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,6 +69,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7D4A5878004E227967A12AA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87E1E1541D68DCCF00A73306 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -220,6 +228,7 @@
 		87E1E15E1D68DCCF00A73306 /* MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
+				87DCB92E1DADC59D00491E45 /* MessagesExtension.entitlements */,
 				87B38E991DAAF57D00F80578 /* Modules */,
 				87B38E9C1DAAF5A200F80578 /* API */,
 				87B38E961DAAF55300F80578 /* Storyboards */,
@@ -239,6 +248,7 @@
 			buildPhases = (
 				87E1E14B1D68DCCF00A73306 /* Resources */,
 				87E1E16C1D68DCCF00A73306 /* Embed App Extensions */,
+				7D4A5878004E227967A12AA5 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -286,6 +296,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = RQ5HD8UR84;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -462,6 +477,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_ENTITLEMENTS = MessagesExtension/MessagesExtension.entitlements;
 				DEVELOPMENT_TEAM = RQ5HD8UR84;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -476,6 +492,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_ENTITLEMENTS = MessagesExtension/MessagesExtension.entitlements;
 				DEVELOPMENT_TEAM = RQ5HD8UR84;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";

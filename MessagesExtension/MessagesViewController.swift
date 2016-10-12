@@ -35,7 +35,7 @@ class MessagesViewController: MSMessagesAppViewController {
             (controller as! StickPicsCollectionViewController).delegate = self
         } else {
             controller = (storyboard?.instantiateViewController(withIdentifier: TableViewController.storyboardIdentifier))!
-//            (controller as! CreateStickPicController).delegate = self
+            (controller.childViewControllers.first as! TableViewController).delegate = self
         }
         
         // Remove any existing child controllers.

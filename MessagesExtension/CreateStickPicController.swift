@@ -12,13 +12,13 @@ import Messages
 
 let savedStickerKey = "savedStickerKey"
 
-protocol CreateStickPicDelegate {
+protocol CreateStickPicDelegate: class {
     func save () -> ()
 }
 
 class CreateStickPicController: UIViewController {
     
-    var delegate: CreateStickPicDelegate?
+    weak var delegate: CreateStickPicDelegate?
     
     static let storyboardIdentifier = "CreateStickPicController"
     
@@ -90,9 +90,11 @@ class CreateStickPicController: UIViewController {
                 if let data = UIImagePNGRepresentation(image) {
                     
                     let id = NSUUID().uuidString
-                    let url = URL(fileURLWithPath: self.getDocumentsDirectory().appendingPathComponent("\(id).png"))
                     
-                    StickPicHistory.load().addStickPicURL(url: url)
+                    let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:
+                        "group.stickpics")!.appendingPathComponent("\(id).png")
+                    
+                    StickPicHistory.load().add(url: url)
                     
                     do {
                         try data.write(to: url)
@@ -140,12 +142,6 @@ class CreateStickPicController: UIViewController {
             sizeSlider.maximumValue = 10.0
             sizeSlider.value = 5.5
         }
-    }
-    
-    func getDocumentsDirectory() -> NSString {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory as NSString
     }
 
 
