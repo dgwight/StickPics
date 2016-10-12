@@ -24,20 +24,22 @@ class MessagesViewController: MSMessagesAppViewController {
     }
 
     private func presentViewController(style: MSMessagesAppPresentationStyle) {
-        if let url = activeConversation?.selectedMessage?.url {
-            print(url.absoluteString)
-        }
-        
-        let controller: UIViewController
+//        if let url = activeConversation?.selectedMessage?.url {
+//            print(url.absoluteString)
+//        }
         
         if style == .compact {
-            controller = storyboard?.instantiateViewController(withIdentifier: StickPicsCollectionViewController.storyboardIdentifier) as! StickPicsCollectionViewController
-            (controller as! StickPicsCollectionViewController).delegate = self
+            let controller = storyboard?.instantiateViewController(withIdentifier: StickPicsCollectionViewController.storyboardIdentifier) as! StickPicsCollectionViewController
+            controller.delegate = self
+            embed(controller, in: view)
         } else {
-            controller = (storyboard?.instantiateViewController(withIdentifier: TableViewController.storyboardIdentifier))!
+            let controller = (storyboard?.instantiateViewController(withIdentifier: TableViewController.storyboardIdentifier))!
             (controller.childViewControllers.first as! TableViewController).delegate = self
+            embed(controller, in: subview)
         }
-        
+    }
+    
+    func embed(_ controller: UIViewController, in view: UIView) {
         // Remove any existing child controllers.
         for child in childViewControllers {
             child.willMove(toParentViewController: nil)

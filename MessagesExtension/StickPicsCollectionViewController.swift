@@ -15,9 +15,9 @@ protocol StickPicsCollectionViewDelegate: class {
 
 class StickPicsCollectionViewController: UICollectionViewController {
     
-    enum Section: Int {
-        case create = 0
-        case stickPic = 1
+    enum CollectionViewItem {
+        case stickPic(URL)
+        case create
     }
     
     // MARK: Properties
@@ -26,28 +26,39 @@ class StickPicsCollectionViewController: UICollectionViewController {
     
     weak var delegate: StickPicsCollectionViewDelegate?
     
+    private let items: [CollectionViewItem]
+    
+    required init?(coder aDecoder: NSCoder) {
+        // Map the previously completed ice creams to an array of `CollectionViewItem`s.
+        let reversedHistory = StickPicHistory.load().stickPicURLs.reversed()
+        var items: [CollectionViewItem] = reversedHistory.map { .stickPic($0) }
+        
+        // Add `CollectionViewItem` that the user can tap to start building a new ice cream.
+        items.insert(.create, at: 0)
+        
+        self.items = items
+        super.init(coder: aDecoder)
+    }
+    
     // MARK: UICollectionViewDataSource
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch Section(rawValue: section)! {
-        case .create:
-            return 1
-        case .stickPic:
-            return StickPicHistory.load().stickPicURLs.count
-        }
+        return items.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch Section(rawValue: indexPath.section)! {
+        
+        let item = items[indexPath.row]
+        
+        switch item {
         case .create:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CreateCell.reuseIdentifier, for: indexPath) as! CreateCell
             return cell
-        case .stickPic:
-            let url = StickPicHistory.load().stickPicURLs[indexPath.row]
+        case .stickPic(let url):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StickPicCell.reuseIdentifier, for: indexPath) as! StickPicCell
             
             do {
@@ -61,10 +72,13 @@ class StickPicsCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch Section(rawValue: indexPath.section)! {
+        
+        let item = items[indexPath.row]
+        
+        switch item {
         case .create:
             delegate?.stickPicsViewControllerDidSelectAdd(self)
-        case .stickPic:
+        case .stickPic(_):
             break
         }
     }

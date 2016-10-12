@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Messages
 
 let backgroundColor = UIColor(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 1.0)
 
@@ -42,19 +43,17 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as! TableViewCell
-        cell.url = stickPics[indexPath.row]
+        do {
+            cell.stickerView.sticker = try MSSticker(contentsOfFileURL: stickPics[indexPath.row], localizedDescription: "test")
+        } catch {
+            print(error)
+        }
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let contoller = segue.destination as? CreateStickPicController {
             contoller.delegate = delegate
-        }
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
         }
     }
     
@@ -78,5 +77,16 @@ class TableViewController: UITableViewController {
             self.present(deleteAlert, animated: true, completion: nil)
         })
         return [deleteAction]
+    }
+    
+    @IBAction func handleCreateTapped(_ sender: UIBarButtonItem) {
+        if stickPics.count < 8 {
+            performSegue(withIdentifier: "toCreate", sender: sender)
+        } else {
+            let fullAlert = UIAlertController(title: "Your Collection is Full", message: "Drag cells to the left to delete them", preferredStyle: UIAlertControllerStyle.alert)
+
+            fullAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil ))
+            self.present(fullAlert, animated: true, completion: nil)
+        }
     }
 }

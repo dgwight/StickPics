@@ -237,23 +237,24 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Ld-0L-2kx" id="wTX-QY-MRl">
-                                    <frame key="frameInset" width="375" height="100"/>
+                                    <frame key="frameInset" width="375" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MS6-Kx-LJS">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sf0-g7-8bx" customClass="MSStickerView">
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="MS6-Kx-LJS" secondAttribute="height" multiplier="1:1" id="nmo-JI-7gf"/>
+                                                <constraint firstAttribute="width" secondItem="sf0-g7-8bx" secondAttribute="height" multiplier="1:1" id="flV-FS-SWt"/>
                                             </constraints>
-                                        </imageView>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="MS6-Kx-LJS" firstAttribute="leading" secondItem="wTX-QY-MRl" secondAttribute="leading" constant="8" id="0E9-UU-NZb"/>
-                                        <constraint firstAttribute="bottom" secondItem="MS6-Kx-LJS" secondAttribute="bottom" constant="8" id="2NN-h4-5eg"/>
-                                        <constraint firstItem="MS6-Kx-LJS" firstAttribute="top" secondItem="wTX-QY-MRl" secondAttribute="top" constant="8" id="tn3-nU-dtK"/>
+                                        <constraint firstItem="sf0-g7-8bx" firstAttribute="leading" secondItem="wTX-QY-MRl" secondAttribute="leading" constant="8" id="RjS-t8-RXB"/>
+                                        <constraint firstAttribute="bottom" secondItem="sf0-g7-8bx" secondAttribute="bottom" constant="8" id="Ytk-Xm-g9v"/>
+                                        <constraint firstItem="sf0-g7-8bx" firstAttribute="top" secondItem="wTX-QY-MRl" secondAttribute="top" constant="8" id="upH-tO-ATD"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="stickerImageView" destination="MS6-Kx-LJS" id="LUx-CO-CJw"/>
+                                    <outlet property="stickerView" destination="sf0-g7-8bx" id="gsJ-mS-I3f"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -265,10 +266,13 @@
                     <navigationItem key="navigationItem" id="KRf-Mr-sbZ">
                         <barButtonItem key="rightBarButtonItem" title="Create" id="TFB-XX-PAT">
                             <connections>
-                                <segue destination="wID-p3-hFy" kind="show" id="klo-dm-0qG"/>
+                                <action selector="handleCreateTapped:" destination="l0g-je-qfu" id="mKV-hv-4rD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="wID-p3-hFy" kind="show" identifier="toCreate" id="YlS-zh-mxv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c36-Ax-Wya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

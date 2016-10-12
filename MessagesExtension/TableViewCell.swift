@@ -7,17 +7,11 @@
 //
 
 import UIKit
+import Messages
 
 class TableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "TableViewCell"
     
-    @IBOutlet weak var stickerImageView: UIImageView?
-    
-    var url: URL? {
-        didSet {
-            guard let url = url else { return }
-            stickerImageView?.image = UIImage(contentsOfFile: url.absoluteString)
-        }
-    }
+    @IBOutlet weak var stickerView: MSStickerView!
 }

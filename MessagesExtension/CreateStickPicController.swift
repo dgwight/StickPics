@@ -278,6 +278,3 @@ extension CreateStickPicController: UIImagePickerControllerDelegate, UINavigatio
 
 extension CreateStickPicController: UIGestureRecognizerDelegate {}
 
-
-
-
