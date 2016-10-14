@@ -80,10 +80,18 @@ class CreateStickPicController: UIViewController {
         if let savedSticker = UserDefaults.standard.string(forKey: savedStickerKey) {
             imageView.image = UIImage.fromBase64(savedSticker)
         }
+        
+        if !UserDefaults.standard.bool(forKey: "intro") {
+            UserDefaults.standard.set(true, forKey: "intro")
+            let introAlert = UIAlertController(title: "Welcome", message: "Tap 'Choose Photo' to select a picture. Then erase the background of the photo and save to your sticker collection.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            introAlert.addAction(UIAlertAction(title: "Got it", style: .default, handler: nil ))
+            self.present(introAlert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func save(_ sender: UIButton) {
-        let saveAlert = UIAlertController(title: "Done?", message: "Adds new sticker to collection", preferredStyle: .alert)
+        let saveAlert = UIAlertController(title: "Finished?", message: "Add this sticker to your collection", preferredStyle: .alert)
         
         saveAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
             if let image = self.imageView.image {
@@ -106,7 +114,7 @@ class CreateStickPicController: UIViewController {
                 }
             }
         }))
-        saveAlert.addAction(UIAlertAction(title: "Nope", style: .cancel, handler: nil))
+        saveAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(saveAlert, animated: true, completion: nil)
     }
     
@@ -126,7 +134,6 @@ class CreateStickPicController: UIViewController {
         imagePicker.view.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
         imagePicker.view.topAnchor.constraint(equalTo: stackView.topAnchor).isActive = true
         imagePicker.view.bottomAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true
-        
         imagePicker.didMove(toParentViewController: self)
     }
     
