@@ -481,7 +481,7 @@
 				DEVELOPMENT_TEAM = RQ5HD8UR84;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Dylan-Wight.StickPics.MessagesExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "Dylan-Wight.StickPixs.MessagesExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -497,7 +497,7 @@
 				DEVELOPMENT_TEAM = RQ5HD8UR84;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Dylan-Wight.StickPics.MessagesExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "Dylan-Wight.StickPixs.MessagesExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -512,7 +512,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RQ5HD8UR84;
 				INFOPLIST_FILE = StickPics/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "Dylan-Wight.StickPics";
+				PRODUCT_BUNDLE_IDENTIFIER = "Dylan-Wight.StickPixs";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -526,7 +526,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RQ5HD8UR84;
 				INFOPLIST_FILE = StickPics/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "Dylan-Wight.StickPics";
+				PRODUCT_BUNDLE_IDENTIFIER = "Dylan-Wight.StickPixs";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
