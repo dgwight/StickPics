@@ -12,6 +12,9 @@
 		875C2A171D68E21D00618229 /* StickPicsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */; };
 		875C2A191D68E49300618229 /* StickPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875C2A181D68E49300618229 /* StickPicCell.swift */; };
 		875C2A1D1D68EDEC00618229 /* StickPicHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875C2A1C1D68EDEC00618229 /* StickPicHistory.swift */; };
+		87A55AAE1E5386A1008F1B7F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A55AAD1E5386A1008F1B7F /* StoreKit.framework */; };
+		87A55AB11E538B10008F1B7F /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A55AB01E538B10008F1B7F /* IAPHelper.swift */; };
+		87A55AB41E538C15008F1B7F /* StickPicsProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A55AB31E538C15008F1B7F /* StickPicsProducts.swift */; };
 		87B38E921DAAF2E100F80578 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B38E911DAAF2E100F80578 /* TableViewController.swift */; };
 		87E1E1511D68DCCF00A73306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87E1E1501D68DCCF00A73306 /* Assets.xcassets */; };
 		87E1E1581D68DCCF00A73306 /* MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 87E1E1571D68DCCF00A73306 /* MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -53,6 +56,9 @@
 		875C2A161D68E21D00618229 /* StickPicsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicsCollectionViewController.swift; sourceTree = "<group>"; };
 		875C2A181D68E49300618229 /* StickPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicCell.swift; sourceTree = "<group>"; };
 		875C2A1C1D68EDEC00618229 /* StickPicHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicHistory.swift; sourceTree = "<group>"; };
+		87A55AAD1E5386A1008F1B7F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		87A55AB01E538B10008F1B7F /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		87A55AB31E538C15008F1B7F /* StickPicsProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickPicsProducts.swift; sourceTree = "<group>"; };
 		87B38E911DAAF2E100F80578 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		87DCB92E1DADC59D00491E45 /* MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessagesExtension.entitlements; sourceTree = "<group>"; };
 		87E1E14D1D68DCCF00A73306 /* StickPics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickPics.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +87,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87E1E15D1D68DCCF00A73306 /* Messages.framework in Frameworks */,
+				87A55AAE1E5386A1008F1B7F /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +109,15 @@
 				870D6A211DAC6EC300677B9A /* TableViewCell.swift */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		87A55AB21E538B1A008F1B7F /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				87A55AB01E538B10008F1B7F /* IAPHelper.swift */,
+				87A55AB31E538C15008F1B7F /* StickPicsProducts.swift */,
+			);
+			name = Lib;
 			sourceTree = "<group>";
 		};
 		87B38E931DAAF52E00F80578 /* Collection View */ = {
@@ -220,6 +236,7 @@
 		87E1E15B1D68DCCF00A73306 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87A55AAD1E5386A1008F1B7F /* StoreKit.framework */,
 				87E1E15C1D68DCCF00A73306 /* Messages.framework */,
 			);
 			name = Frameworks;
@@ -232,6 +249,7 @@
 				87B38E991DAAF57D00F80578 /* Modules */,
 				87B38E9C1DAAF5A200F80578 /* API */,
 				87B38E961DAAF55300F80578 /* Storyboards */,
+				87A55AB21E538B1A008F1B7F /* Lib */,
 				87B38E9A1DAAF59200F80578 /* Resources */,
 				87B38E971DAAF56200F80578 /* Extensions */,
 				87B38E9B1DAAF59B00F80578 /* Supporting Files */,
@@ -300,6 +318,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -353,9 +374,11 @@
 				87F42E3C1DAAB78000C85C07 /* UIImage+StickPics.swift in Sources */,
 				870D6A221DAC6EC300677B9A /* TableViewCell.swift in Sources */,
 				875C2A171D68E21D00618229 /* StickPicsCollectionViewController.swift in Sources */,
+				87A55AB41E538C15008F1B7F /* StickPicsProducts.swift in Sources */,
 				87E1E1601D68DCCF00A73306 /* MessagesViewController.swift in Sources */,
 				87E1E1711D68DDCA00A73306 /* CreateStickPicController.swift in Sources */,
 				875C2A191D68E49300618229 /* StickPicCell.swift in Sources */,
+				87A55AB11E538B10008F1B7F /* IAPHelper.swift in Sources */,
 				875AA2D31DAC66E60080E05E /* CreateCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

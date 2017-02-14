@@ -9,10 +9,28 @@
 import UIKit
 import CoreData
 import Messages
+import StoreKit
 
 let backgroundColor = UIColor(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 1.0)
 
 class TableViewController: UITableViewController {
+    
+    fileprivate var product: SKProduct? {
+        didSet {
+            guard let product = product  else {
+                premiumPurchased = false
+                return
+            }
+            
+            premiumPurchased = StickPicsProducts.store.isProductPurchased(product.productIdentifier)
+        }
+    }
+    
+    fileprivate var premiumPurchased = false {
+        didSet {
+            upgradeButton?.isEnabled = !premiumPurchased
+        }
+    }
     
     static let storyboardIdentifier = "TableViewController"
     
@@ -22,11 +40,27 @@ class TableViewController: UITableViewController {
         return StickPicHistory.load().stickPicURLs
     }
     
+    @IBOutlet weak var upgradeButton: UIBarButtonItem? {
+        didSet {
+            upgradeButton?.isEnabled = false
+        }
+    }
+    
     var people = [NSManagedObject]()
     
     override func viewDidLoad() {
         tableView?.tableFooterView = UIView()
         tableView?.backgroundColor = backgroundColor
+        
+        StickPicsProducts.store.requestProducts { success, products in
+            if success, let product = products?.first {
+                self.product = product
+                
+                self.tableView.reloadData()
+            }
+            
+            self.refreshControl?.endRefreshing()
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -80,7 +114,7 @@ class TableViewController: UITableViewController {
     }
     
     @IBAction func handleCreateTapped(_ sender: UIBarButtonItem) {
-        if stickPics.count < 8 {
+        if stickPics.count < 8 || premiumPurchased {
             performSegue(withIdentifier: "toCreate", sender: sender)
         } else {
             let fullAlert = UIAlertController(title: "Your Collection is Full", message: "Drag cells to the left to delete them", preferredStyle: UIAlertControllerStyle.alert)
@@ -88,5 +122,11 @@ class TableViewController: UITableViewController {
             fullAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil ))
             self.present(fullAlert, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func handleUpgradeTapped(_ sender: UIBarButtonItem) {
+        guard let product = product else { return }
+        
+        StickPicsProducts.store.buyProduct(product)
     }
 }

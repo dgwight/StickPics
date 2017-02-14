@@ -1,0 +1,5 @@
+An iMessage app for creating stickers out of your photos. The easiest way to turn your friends face into a sticker.
+
+Draw to clear away the background of a picture, when you are done save to your sticker collection to use anytime.
+
+Hold stickers to peel them, then pinch to resize and place on message bubbles.

@@ -24,10 +24,7 @@ class MessagesViewController: MSMessagesAppViewController {
     }
 
     private func presentViewController(style: MSMessagesAppPresentationStyle) {
-//        if let url = activeConversation?.selectedMessage?.url {
-//            print(url.absoluteString)
-//        }
-        
+
         if style == .compact {
             let controller = storyboard?.instantiateViewController(withIdentifier: StickPicsCollectionViewController.storyboardIdentifier) as! StickPicsCollectionViewController
             controller.delegate = self
@@ -61,24 +58,6 @@ class MessagesViewController: MSMessagesAppViewController {
         controller.didMove(toParentViewController: self)
     }
 }
-
-//    // MARK: Convenience
-//
-//    fileprivate func composeMessage(with url: URL, caption: String, session: MSSession? = nil) -> MSMessage {
-//        var components = URLComponents()
-//        components.queryItems = iceCream.queryItems
-//        
-//        let layout = MSMessageTemplateLayout()
-//        layout.image = iceCream.renderSticker(opaque: true)
-//        layout.caption = caption
-//        
-//        let message = MSMessage(session: session ?? MSSession())
-//        message.url = components.url!
-//        message.layout = layout
-//        
-//        return message
-//    }
-//}
 
 extension MessagesViewController: CreateStickPicDelegate {
     func save() {
